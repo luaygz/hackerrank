@@ -10,25 +10,21 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+
+
 class Result {
 
     /*
-     * Complete the 'lonelyinteger' function below.
+     * Complete the 'findMedian' function below.
      *
      * The function is expected to return an INTEGER.
-     * The function accepts INTEGER_ARRAY a as parameter.
+     * The function accepts INTEGER_ARRAY arr as parameter.
      */
 
-    public static int lonelyinteger(List<Integer> a) {
+    public static int findMedian(List<Integer> arr) {
     // Write your code here
-        int[] elementCounts = new int[101];
-        for(int num: a) {
-            elementCounts[num]++;
-        }
-        for(int i=0;i<=100;i++) {
-            if(elementCounts[i] == 1) return i;
-        }
-        return -1; // should never be reached because of input guarantees but doesn't compile without
+        Collections.sort(arr);
+        return arr.get(arr.size()/2);
     }
 
 }
@@ -40,11 +36,11 @@ public class Solution {
 
         int n = Integer.parseInt(bufferedReader.readLine().trim());
 
-        List<Integer> a = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
             .map(Integer::parseInt)
             .collect(toList());
 
-        int result = Result.lonelyinteger(a);
+        int result = Result.findMedian(arr);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
